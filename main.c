@@ -460,9 +460,7 @@
      init.config.ble_adv_fast_enabled  = true;
      init.config.ble_adv_fast_interval = APP_ADV_INTERVAL;
      init.config.ble_adv_fast_timeout  = APP_ADV_DURATION;
- 
-     // TODO: Add more data to the advertisement data
-     // TODO: Add more data to the scan response data
+
      init.srdata.name_type = BLE_ADVDATA_NO_NAME;
      init.srdata.include_appearance = true;
      init.srdata.uuids_complete.uuid_cnt = sizeof(m_adv_uuids) / sizeof(m_adv_uuids[0]);
