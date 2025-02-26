@@ -433,12 +433,12 @@
      uint8_t user_name[] = USER_NAME;
 
      
-     short_name_to_payload.size = sizeof(user_name);
+     short_name_to_payload.size = sizeof(user_name) / sizeof(user_name[0]);
      short_name_to_payload.p_data = user_name;
      short_name_payload.data = short_name_to_payload;
 
      uint8_t full_user_name[] = FULL_USER_NAME;
-     full_name_to_payload.size = sizeof(full_user_name);
+     full_name_to_payload.size = sizeof(full_user_name) / sizeof(full_user_name[0]);
      full_name_to_payload.p_data = full_user_name;
      full_name_payload.data = full_name_to_payload;
      
@@ -447,7 +447,7 @@
  
      memset(&init, 0, sizeof(init));
  
-     init.advdata.name_type               = BLE_ADVDATA_FULL_NAME;
+     init.advdata.name_type               = BLE_ADVDATA_NO_NAME;
      init.advdata.include_appearance      = true;
      init.advdata.flags                   = BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE;
      init.advdata.uuids_complete.uuid_cnt = sizeof(m_adv_uuids) / sizeof(m_adv_uuids[0]);
@@ -463,6 +463,10 @@
  
      // TODO: Add more data to the advertisement data
      // TODO: Add more data to the scan response data
+     init.srdata.name_type = BLE_ADVDATA_NO_NAME;
+     init.srdata.include_appearance = true;
+     init.srdata.uuids_complete.uuid_cnt = sizeof(m_adv_uuids) / sizeof(m_adv_uuids[0]);
+     init.srdata.uuids_complete.p_uuids = m_adv_uuids;
      init.srdata.p_manuf_specific_data = &full_name_payload;
      init.evt_handler = on_adv_evt;
  
